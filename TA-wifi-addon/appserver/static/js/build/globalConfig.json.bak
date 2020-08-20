@@ -264,6 +264,10 @@
                                         "label": "apDwellTimeMs"
                                     },
                                     {
+                                        "value": "accessPointHistory",
+                                        "label": "accessPointHistory"
+                                    },
+                                    {
                                         "value": "accessPointHistory.apMacAddr",
                                         "label": "accessPointHistory.apMacAddr"
                                     },

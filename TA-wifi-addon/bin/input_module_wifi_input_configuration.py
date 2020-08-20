@@ -52,13 +52,11 @@ def collect_events(helper, ew):
     # The following examples get the arguments of this input.
     # Note, for single instance mod input, args will be returned as a dict.
     # For multi instance mod input, args will be returned as a single value.
-    opt_input_name = helper.get_arg('input_name')
     opt_api_url = helper.get_arg('api_url')
     opt_api_key = helper.get_arg('api_key')
     opt_from_date = helper.get_arg('from_date')
     opt_required_fields = helper.get_arg('required_fields')
     opt_interval = helper.get_arg('interval')
-    helper.log_debug("Input Name:"+opt_input_name)
     helper.log_debug("API URL:"+opt_api_url)
     helper.log_debug("API KEY:"+opt_api_key)
     helper.log_debug("from Date:"+opt_from_date)
