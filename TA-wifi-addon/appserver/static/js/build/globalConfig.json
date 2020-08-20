@@ -1,0 +1,286 @@
+{
+    "meta": {
+        "name": "TA-wifi-addon",
+        "displayName": "Wifi Addon",
+        "version": "1.0.0",
+        "apiVersion": "3.0.0",
+        "restRoot": "TA_wifi_addon"
+    },
+    "pages": {
+        "configuration": {
+            "title": "Configuration",
+            "description": "Set up your add-on",
+            "tabs": [
+                {
+                    "name": "logging",
+                    "title": "Logging",
+                    "entity": [
+                        {
+                            "field": "loglevel",
+                            "label": "Log level",
+                            "type": "singleSelect",
+                            "options": {
+                                "disableSearch": true,
+                                "autoCompleteFields": [
+                                    {
+                                        "label": "DEBUG",
+                                        "value": "DEBUG"
+                                    },
+                                    {
+                                        "label": "INFO",
+                                        "value": "INFO"
+                                    },
+                                    {
+                                        "label": "WARNING",
+                                        "value": "WARNING"
+                                    },
+                                    {
+                                        "label": "ERROR",
+                                        "value": "ERROR"
+                                    },
+                                    {
+                                        "label": "CRITICAL",
+                                        "value": "CRITICAL"
+                                    }
+                                ]
+                            },
+                            "defaultValue": "INFO"
+                        }
+                    ]
+                }
+            ]
+        },
+        "inputs": {
+            "title": "Inputs",
+            "description": "Manage your data inputs",
+            "table": {
+                "header": [
+                    {
+                        "field": "name",
+                        "label": "Name"
+                    },
+                    {
+                        "field": "interval",
+                        "label": "Interval"
+                    },
+                    {
+                        "field": "index",
+                        "label": "Index"
+                    },
+                    {
+                        "field": "disabled",
+                        "label": "Status"
+                    }
+                ],
+                "moreInfo": [
+                    {
+                        "field": "name",
+                        "label": "Name"
+                    },
+                    {
+                        "field": "interval",
+                        "label": "Interval"
+                    },
+                    {
+                        "field": "index",
+                        "label": "Index"
+                    },
+                    {
+                        "field": "disabled",
+                        "label": "Status"
+                    },
+                    {
+                        "field": "api_url",
+                        "label": "API URL"
+                    },
+                    {
+                        "field": "api_key",
+                        "label": "API KEY"
+                    },
+                    {
+                        "field": "from_date",
+                        "label": "From Date"
+                    },
+                    {
+                        "field": "required_fields",
+                        "label": "Required Fields"
+                    }
+                ],
+                "actions": [
+                    "edit",
+                    "enable",
+                    "delete",
+                    "clone"
+                ]
+            },
+            "services": [
+                {
+                    "name": "wifi_input_configuration",
+                    "title": "Wifi Input Configuration",
+                    "entity": [
+                        {
+                            "field": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "help": "Enter a unique name for the data input",
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "pattern": "^[a-zA-Z]\\w*$",
+                                    "errorMsg": "Input Name must start with a letter and followed by alphabetic letters, digits or underscores."
+                                },
+                                {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 100,
+                                    "errorMsg": "Length of input name should be between 1 and 100"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "interval",
+                            "label": "Interval",
+                            "type": "text",
+                            "required": true,
+                            "help": "Time interval of input in seconds.",
+                            "validators": [
+                                {
+                                    "type": "regex",
+                                    "pattern": "^\\-[1-9]\\d*$|^\\d*$",
+                                    "errorMsg": "Interval must be an integer."
+                                }
+                            ]
+                        },
+                        {
+                            "field": "index",
+                            "label": "Index",
+                            "type": "singleSelect",
+                            "defaultValue": "default",
+                            "options": {
+                                "endpointUrl": "data/indexes",
+                                "blackList": "^_.*$",
+                                "createSearchChoice": true
+                            },
+                            "required": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 80,
+                                    "errorMsg": "Length of index name should be between 1 and 80."
+                                }
+                            ]
+                        },
+                        {
+                            "field": "api_url",
+                            "label": "API URL",
+                            "help": "",
+                            "required": true,
+                            "type": "text",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "api_key",
+                            "label": "API KEY",
+                            "help": "",
+                            "required": true,
+                            "type": "text",
+                            "encrypted": true,
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of password is 8192"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "from_date",
+                            "label": "From Date",
+                            "help": "",
+                            "required": true,
+                            "type": "text",
+                            "defaultValue": "1970-01-01T00:00:00.000Z",
+                            "validators": [
+                                {
+                                    "type": "string",
+                                    "minLength": 0,
+                                    "maxLength": 8192,
+                                    "errorMsg": "Max length of text input is 8192"
+                                }
+                            ],
+                            "options": {
+                                "placeholder": "1970-01-01T00:00:00.000Z"
+                            }
+                        },
+                        {
+                            "field": "required_fields",
+                            "label": "Required Fields",
+                            "help": "",
+                            "required": true,
+                            "type": "multipleSelect",
+                            "options": {
+                                "delimiter": "~",
+                                "items": [
+                                    {
+                                        "value": "macAddr",
+                                        "label": "macAddr"
+                                    },
+                                    {
+                                        "value": "ipAddress",
+                                        "label": "ipAddress"
+                                    },
+                                    {
+                                        "value": "hostname",
+                                        "label": "hostname"
+                                    },
+                                    {
+                                        "value": "userName",
+                                        "label": "userName"
+                                    },
+                                    {
+                                        "value": "isWireless",
+                                        "label": "isWireless"
+                                    },
+                                    {
+                                        "value": "apName",
+                                        "label": "apName"
+                                    },
+                                    {
+                                        "value": "apMacAddr",
+                                        "label": "apMacAddr"
+                                    },
+                                    {
+                                        "value": "apDwellTimeMs",
+                                        "label": "apDwellTimeMs"
+                                    },
+                                    {
+                                        "value": "accessPointHistory",
+                                        "label": "accessPointHistory"
+                                    },
+                                    {
+                                        "value": "accessPointHistory.apMacAddr",
+                                        "label": "accessPointHistory.apMacAddr"
+                                    },
+                                    {
+                                        "value": "accessPointHistory.lastSeen",
+                                        "label": "accessPointHistory.lastSeen"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
