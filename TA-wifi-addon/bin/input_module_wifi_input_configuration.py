@@ -101,7 +101,7 @@ def collect_events(helper, ew):
     except Exception as e:
         helper.log_error(e)
     helper.log_debug(total_page)
-    while(current_page!=total_page):
+    while(current_page<total_page):
         current_page=current_page+1
         helper.log_debug(current_page)
         
